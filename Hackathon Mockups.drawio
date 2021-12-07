@@ -1,17 +1,17 @@
-<mxfile host="app.diagrams.net" modified="2021-12-07T10:14:23.586Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="_kGbl6Jtyl0j9CEd5RkF" version="15.9.1" type="github" pages="3">
+<mxfile host="app.diagrams.net" modified="2021-12-07T10:18:49.599Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36" etag="M-1nO5sxAUS0p_TgBWRx" version="15.9.1" type="github" pages="4">
   <diagram id="BbLknlgu5Jx64-4c73IF" name="Player 1">
-    <mxGraphModel dx="782" dy="468" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1278" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="yLtX_EQYpcZK6J9iLCZp-1" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+        <mxCell id="yLtX_EQYpcZK6J9iLCZp-1" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="220" y="380" width="80" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="LcWD8KKWZGWddXPpKwEa" name="Player 2">
-    <mxGraphModel dx="782" dy="468" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1278" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="e0ayLPcoWOL_uD6bi7Ww-0" />
         <mxCell id="e0ayLPcoWOL_uD6bi7Ww-1" parent="e0ayLPcoWOL_uD6bi7Ww-0" />
@@ -23,6 +23,14 @@
       <root>
         <mxCell id="GWzeu4ogN81BlrtRWsrX-0" />
         <mxCell id="GWzeu4ogN81BlrtRWsrX-1" parent="GWzeu4ogN81BlrtRWsrX-0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="uUN4rMrV3TEh8RXOhPAF" name="Samer">
+    <mxGraphModel dx="1278" dy="539" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="E88bDnxYkqx0lOkwj306-0" />
+        <mxCell id="E88bDnxYkqx0lOkwj306-1" parent="E88bDnxYkqx0lOkwj306-0" />
       </root>
     </mxGraphModel>
   </diagram>
