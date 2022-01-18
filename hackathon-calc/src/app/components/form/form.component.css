@@ -1,0 +1,27 @@
+#headline{font-size: 32px;}
+        #HowTo {
+            float:right;
+            font-size:32px;
+            margin-right: 10px;
+        }
+        button{width:100%;}
+        label{
+            margin-right: 20px;
+        }
+        .table-borderless > tbody > tr > td,
+        .table-borderless > tbody > tr > th,
+        .table-borderless > tfoot > tr > td,
+        .table-borderless > tfoot > tr > th,
+        .table-borderless > thead > tr > td,
+        .table-borderless > thead > tr > th {
+         border: none;
+}
+body{
+    padding-left:2em;
+    padding-right:2em;
+}
+select{
+    border: blue;
+}
+
+.dropdownButton{background-color: white;border-color: blue;}

@@ -18,12 +18,33 @@ export class CalculationService {
     let income = form.income
     console.log(income)
 
-    let sv = this.sV(income)
-    console.log(sv)
+    // monthly
+    r.monthly.brutto = income
+    r.monthly.sv = this.sV(income)
+    let remaining = income - r.monthly.sv;
 
-    let remaining = income - sv;
+    r.monthly.lst = this.incomeTax(remaining, 0, form.children, form.fabo17, form.fabo18)
+    r.monthly.netto = income - r.monthly.sv - r.monthly.lst; // todo pauschalen, ...
 
-    console.log(this.incomeTax(remaining, 0, form.avab,form.children,form.fabo17, form.fabo18))
+    // bonus
+    r.thirteenth.brutto = income
+    r.thirteenth.sv = this.bonusSV(income)
+    let thriteenthMinusSv = income - r.thirteenth.sv;
+    r.thirteenth.lst = this.bonusTax(thriteenthMinusSv, 0)
+    r.thirteenth.netto = income - r.thirteenth.sv - r.thirteenth.lst;
+
+    r.fourteenth.brutto = income
+    r.fourteenth.sv = this.bonusSV(income)
+    remaining = income - r.thirteenth.sv;
+    r.fourteenth.lst = this.bonusTax(remaining, thriteenthMinusSv)
+    r.fourteenth.netto = income - r.fourteenth.sv - r.fourteenth.lst;
+
+
+    // yearly
+    r.yearly.brutto = income * 14
+    r.yearly.netto = 12 * r.monthly.netto + r.thirteenth.netto + r.fourteenth.netto
+    r.yearly.lst = 12 * r.monthly.lst + r.thirteenth.lst + r.fourteenth.lst
+    r.yearly.sv = 12 * r.monthly.sv + r.thirteenth.sv + r.fourteenth.sv
 
     return r;
   }
@@ -34,7 +55,7 @@ export class CalculationService {
     let lowerTaxBracketBound = 0
 
     for (let t of taxGroups) {
-      if (alreadyTaxed <= lowerTaxBracketBound) {
+      if (alreadyTaxed < lowerTaxBracketBound + t.width) {
         const amount = Math.min(t.width, remaining)
         alreadyTaxed += amount
         remaining -= amount
@@ -63,27 +84,31 @@ export class CalculationService {
     //fabo17 deduction
     if (fabo17 > 0) {
       for (let i = 1; i <= fabo17; i++) {
-        tax -=125;
+        tax -= 125;
       }
     }
     //fabo18 deduction
     if (fabo18 > 0) {
       for (let i = 1; i <= fabo18; i++) {
-        tax -=41.68;
+        tax -= 41.68;
       }
     }
 
-    return tax <= 0? 0:tax;
+    return tax <= 0 ? 0 : tax;
   }
 
   private bonusTax(monthlyIncomeWithoutSv: number, alreadyTaxedBonus: number): number {
+    if (2 * monthlyIncomeWithoutSv <= 2100) { // Freibetrag
+      return 0
+    }
+
     let alreadyTaxed = alreadyTaxedBonus
     let remaining = monthlyIncomeWithoutSv
     let tax = 0
     let lowerTaxBracketBound = 0
 
     for (let t of bonusTaxGroups) {
-      if (alreadyTaxed <= lowerTaxBracketBound) {
+      if (alreadyTaxed < lowerTaxBracketBound + t.width) {
         const amount = Math.min(t.width, remaining)
         alreadyTaxed += amount
         remaining -= amount
@@ -92,7 +117,7 @@ export class CalculationService {
       lowerTaxBracketBound += t.width
     }
 
-    tax += this.incomeTax(remaining, alreadyTaxed, form)
+    tax += this.incomeTax(remaining, alreadyTaxed, false, 0, 0, 0)
 
     return tax
   }

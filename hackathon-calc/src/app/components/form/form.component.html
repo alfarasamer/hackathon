@@ -1,29 +1,64 @@
 <form [formGroup]="inputForm" (submit)="onSubmit()">
-  <div class="mb-3">
-    <div class="form-group">
-      <label for="income">Einkommen</label>
-      <input class="form-control" type="number" min="0" id="income" formControlName="income">
-    </div>
-    <div class="mb-3">
-      <label for="children">Kinder</label>
-      <input class="form-control" type="number" min="0" id="children" formControlName="children">
-    </div>
-    <div class="mb-3">
-      <label for="loneParent">Alleinerziehend </label>
-      <input class="form-check-label" type="checkbox" id="loneParent" formControlName="loneParent" (click)="checkLoneParent()">
-    </div>
-    <div>
-    </div>
+  <div>
+    <span id="headline">Brutto Netto Rechner</span>
+    <span id="HowTo">?</span>
   </div>
-
-  <button class="btn btn-primary" type="submit">Submit</button>
-
-  <table>
+  <br>
+  <table class="table table-borderless" id="inputTable">
     <tr>
-      <th></th>
+      <td><label for="income">Einkommen</label></td>
+      <td>
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle dropdownButton" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            monatlich
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#">monatlich</a></li>
+            <li><a class="dropdown-item" href="#">jährlich</a></li>
+          </div>
+        </div>
+      </td>
+      <td>
+        <input class="form-control" type="number" min="0" formControlName="income">
+      </td>
+    </tr>
+    <tr>
+      <td><label for="children">Kinder</label></td>
+      <td><input class="form-control" type="number" min="0" id="income" formControlName="income" value="0"></td>
+      <td><input class="form-check-label" type="checkbox" id="loneParent" formControlName="loneParent" (click)="checkLoneParent()"> AVAB/AEAB</td>
+    </tr>
+    <tr>
+      <td><label for="commute">Pendlerpauschale </label></td>
+      <td>
+        <div class="dropdown">
+          <button class="btn dropdownButton dropdown-toggle " type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            klein
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#">klein</a></li>
+            <li><a class="dropdown-item" href="#">mittel</a></li>
+            <li><a class="dropdown-item" href="#">groß</a></li>
+          </div>
+        </div>
+      </td>
+      <td>
+        <input class="form-control" type="number" min="0" id="commute" formControlName="commute" value="0">
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td colspan="3"><button class="btn btn-primary" type="submit">berechnen</button></td>
+    </tr>
+  </table>
+
+  <table class="table">
+    <tr>
+      <td></td>
       <th>Monatlich</th>
-      <th>13.</th>
-      <th>14.</th>
+      <th>13. Bezug</th>
+      <th>14. Bezug</th>
       <th>Jährlich</th>
     </tr>
     <tr>
