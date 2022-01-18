@@ -27,8 +27,8 @@ export class CalculationService {
     return r;
   }
 
-  private incomeTax(grossMonthlyIncome: number, alreadyTaxed: number): number {
-    let remaining = grossMonthlyIncome
+  private incomeTax(monthlyIncomeWithoutSv: number, alreadyTaxed: number): number {
+    let remaining = monthlyIncomeWithoutSv
     let tax = 0
     let lowerTaxBracketBound = 0
 
@@ -96,6 +96,30 @@ export class CalculationService {
       return monthlyIncome * 0.1712;
     }
     return 1900.32;
+  }
+
+  private pendlerPauschale(isBig: boolean, distanceInKm: number): number {
+    let pauschale = 0;
+    if (isBig) { // Pendler Pauschale gross
+      if (distanceInKm >= 60) {
+        pauschale = 306;
+      } else if (distanceInKm >= 40) {
+        pauschale = 214;
+      } else if (distanceInKm >= 20) {
+        pauschale = 123;
+      } else if (distanceInKm >= 2) {
+        pauschale = 31;
+      }
+    } else { // Pendler Pauschale klein
+      if (distanceInKm >= 60) {
+        pauschale = 168;
+      } else if (distanceInKm >= 40) {
+        pauschale = 113;
+      } else if (distanceInKm >= 20) {
+        pauschale = 58;
+      }
+    }
+    return (distanceInKm * 2) / 12 + pauschale;
   }
 }
 
