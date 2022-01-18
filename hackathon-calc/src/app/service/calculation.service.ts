@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {result, ResultCollection} from "../entity/result";
+import {result} from "../entity/result";
+import {ResultCollection} from "../entity/result";
 import {form} from "../entity/form";
 
 
@@ -22,7 +23,7 @@ export class CalculationService {
 
     let remaining = income - sv;
 
-    console.log(this.incomeTax(remaining, 0))
+    console.log(this.incomeTax(remaining, 0, form.children, form.fabo17, form.fabo18))
 
     return r;
   }
