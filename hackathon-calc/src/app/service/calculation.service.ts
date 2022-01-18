@@ -22,11 +22,12 @@ export class CalculationService {
     r.monthly.sv = this.sV(income)
     let monthlyMinusSv = income - r.monthly.sv;
 
-    r.monthly.lst = this.incomeTax(monthlyMinusSv, 0, form.avab, form.children, form.fabo17, form.fabo18)
-    r.monthly.netto = income - r.monthly.sv - r.monthly.lst
+    let pendlerPauschale = 0
     if (form.largeCommute != undefined && form.commuteDist != undefined) {
-      r.monthly.netto += this.pendlerPauschale(form.largeCommute, form.commuteDist);
+      pendlerPauschale = this.pendlerPauschale(form.largeCommute, form.commuteDist);
     }
+    r.monthly.lst = this.incomeTax(monthlyMinusSv - pendlerPauschale, 0, form.avab, form.children, form.fabo17, form.fabo18)
+    r.monthly.netto = income - r.monthly.sv - r.monthly.lst
 
     // bonus
     r.thirteenth.brutto = income
