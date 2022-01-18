@@ -11,10 +11,10 @@ export class CalculationService {
   constructor() {
   }
 
-  calculate(form: form): result {
+  calculate(form : form): result {
     let r = new result();
 
-    let income = form.income
+    let income = form.income;
     console.log(income)
 
     let sv = this.sV(income)
@@ -22,12 +22,13 @@ export class CalculationService {
 
     let remaining = income - sv;
 
-    console.log(this.incomeTax(remaining, 0))
+
+    console.log(this.incomeTax(remaining, 0, form.children, form.fabo17, form.fabo18))
 
     return r;
   }
 
-  private incomeTax(grossMonthlyIncome: number, alreadyTaxed: number): number {
+  private incomeTax(grossMonthlyIncome: number, alreadyTaxed: number, children: number, fabo17: number, fabo18: number): number {
     let remaining = grossMonthlyIncome
     let tax = 0
     let lowerTaxBracketBound = 0
@@ -44,7 +45,32 @@ export class CalculationService {
 
     tax += 0.55 * remaining
 
-    return tax
+    //AVAB/AEAB deductions
+    if (children == 1) {
+      tax-= 494;
+    }
+    if (children == 2) {
+      tax-=669;
+    }
+    if (children >= 3) {
+      for (let i = 3; i <= children; i++) {
+        tax-= 220;
+      }
+    }
+    //fabo17 deduction
+    if (fabo17 > 0) {
+      for (let i = 1; i <= fabo17; i++) {
+        tax -=125;
+      }
+    }
+    //fabo18 deduction
+    if (fabo18 > 0) {
+      for (let i = 1; i <= fabo18; i++) {
+        tax -=41.68;
+      }
+    }
+
+    return tax <= 0? 0:tax;
   }
 
   private bonusTax(monthlyIncomeWithoutSv: number, alreadyTaxedBonus: number): number {
@@ -63,7 +89,7 @@ export class CalculationService {
       lowerTaxBracketBound += t.width
     }
 
-    tax += this.incomeTax(remaining, alreadyTaxed)
+    tax += this.incomeTax(remaining, alreadyTaxed, 0, 0, 0)
 
     return tax
   }
