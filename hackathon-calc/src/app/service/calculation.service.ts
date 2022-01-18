@@ -49,13 +49,13 @@ export class CalculationService {
     return r;
   }
 
-  private incomeTax(grossMonthlyIncome: number, alreadyTaxed: number, children: number, fabo17: number, fabo18: number): number {
+  private incomeTax(grossMonthlyIncome: number, alreadyTaxed: number, avab: boolean, children: number, fabo17: number, fabo18: number): number {
     let remaining = grossMonthlyIncome
     let tax = 0
     let lowerTaxBracketBound = 0
 
     for (let t of taxGroups) {
-      if (alreadyTaxed <= lowerTaxBracketBound + t.width) {
+      if (alreadyTaxed < lowerTaxBracketBound + t.width) {
         const amount = Math.min(t.width, remaining)
         alreadyTaxed += amount
         remaining -= amount
@@ -67,17 +67,20 @@ export class CalculationService {
     tax += 0.55 * remaining
 
     //AVAB/AEAB deductions
-    if (children == 1) {
-      tax -= 494;
-    }
-    if (children == 2) {
-      tax -= 669;
-    }
-    if (children >= 3) {
-      for (let i = 3; i <= children; i++) {
-        tax -= 220;
+    if (avab) {
+      if (children == 1) {
+        tax-= 494;
+      }
+      if (children == 2) {
+        tax-=669;
+      }
+      if (children >= 3) {
+        for (let i = 3; i <= children; i++) {
+          tax-= 220;
+        }
       }
     }
+
     //fabo17 deduction
     if (fabo17 > 0) {
       for (let i = 1; i <= fabo17; i++) {
@@ -95,6 +98,10 @@ export class CalculationService {
   }
 
   private bonusTax(monthlyIncomeWithoutSv: number, alreadyTaxedBonus: number): number {
+    if (2 * monthlyIncomeWithoutSv <= 2100) { // Freibetrag
+      return 0
+    }
+
     let alreadyTaxed = alreadyTaxedBonus
     let remaining = monthlyIncomeWithoutSv
     let tax = 0
@@ -110,7 +117,7 @@ export class CalculationService {
       lowerTaxBracketBound += t.width
     }
 
-    tax += this.incomeTax(remaining, alreadyTaxed, 0, 0, 0)
+    tax += this.incomeTax(remaining, alreadyTaxed, false, 0, 0, 0)
 
     return tax
   }

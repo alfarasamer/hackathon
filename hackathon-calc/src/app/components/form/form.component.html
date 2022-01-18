@@ -26,7 +26,7 @@
     <tr>
       <td><label for="children">Kinder</label></td>
       <td><input class="form-control" type="number" min="0" id="income" formControlName="income" value="0"></td>
-      <td><input class="form-check-label" type="checkbox" id="loneParent" formControlName="loneParent"> AVAB/AEAB</td>
+      <td><input class="form-check-label" type="checkbox" id="loneParent" formControlName="loneParent" (click)="checkLoneParent()"> AVAB/AEAB</td>
     </tr>
     <tr>
       <td><label for="commute">Pendlerpauschale </label></td>
