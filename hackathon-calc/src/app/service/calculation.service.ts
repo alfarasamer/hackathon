@@ -26,7 +26,7 @@ export class CalculationService {
     if (form.largeCommute != undefined && form.commuteDist != undefined) {
       pendlerPauschale = this.pendlerPauschale(form.largeCommute, form.commuteDist);
     }
-    r.monthly.lst = this.incomeTax(monthlyMinusSv - pendlerPauschale, 0, form.avab, form.children, form.fabo17, form.fabo18)
+    r.monthly.lst = this.incomeTax(monthlyMinusSv - pendlerPauschale, 0, form.loneParent, form.children, form.fabo17, form.fabo18)
     r.monthly.netto = income - r.monthly.sv - r.monthly.lst
 
     // bonus
