@@ -4,7 +4,7 @@
 //}
 export class form {
   id?: number;
-  income?: number;
+  income: number = 0;
   //category?: cat;
   children?: number;
   loneParent?: boolean;
