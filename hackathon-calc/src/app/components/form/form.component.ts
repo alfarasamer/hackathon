@@ -19,6 +19,7 @@ export class FormComponent implements OnInit {
 
     this.inputForm = this.formBuilder.group({
       income: [0, [Validators.required, Validators.min(0)]],
+      yearly: [false],
       children: [0, [Validators.required, Validators.min(0)]],
       loneParent: [false, []],
       largeCommute: [false, []],
@@ -38,7 +39,11 @@ export class FormComponent implements OnInit {
   onSubmit(): void {
     let outputForm = new Form();
     if (this.inputForm.valid) {
-      outputForm.income = this.inputForm.value.income;
+      if (this.inputForm.value.yearly) {
+        outputForm.income = this.inputForm.value.income / 14;
+      } else {
+        outputForm.income = this.inputForm.value.income;
+      }
       outputForm.children = this.inputForm.value.children;
       outputForm.loneParent = this.inputForm.value.loneParent;
       outputForm.largeCommute = this.inputForm.value.largeCommute;

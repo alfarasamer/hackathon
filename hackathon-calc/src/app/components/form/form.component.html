@@ -8,9 +8,9 @@
     <tr>
       <td><label for="incomeSelect">Einkommen</label></td>
       <td>
-        <select class="form-select" id="incomeSelect" aria-label="incomeSelect">
-          <option value="monatlich" selected>monatlich</option>
-          <option value="jaehrlich">jährlich</option>
+        <select class="form-select" id="incomeSelect" aria-label="incomeSelect" formControlName="yearly">
+          <option value="false" selected>monatlich</option>
+          <option value="true">jährlich</option>
         </select>
       </td>
       <td>
