@@ -18,12 +18,30 @@ export class CalculationService {
     let income = form.income
     console.log(income)
 
-    let sv = this.sV(income)
-    console.log(sv)
+    // monthly
+    r.monthly.brutto = income
+    r.monthly.sv = this.sV(income)
+    let remaining = income - r.monthly.sv;
 
-    let remaining = income - sv;
+    r.monthly.lst = this.incomeTax(remaining, 0, form.children, form.fabo17, form.fabo18)
+    r.monthly.netto = income - r.monthly.sv - r.monthly.lst; // todo pauschalen, ...
 
-    console.log(this.incomeTax(remaining, 0, form.children, form.fabo17, form.fabo18))
+    // yearly
+    r.yearly.brutto = income * 14
+
+    // bonus
+    r.thirteenth.brutto = income
+    r.thirteenth.sv = this.bonusSV(income)
+    let thriteenthMinusSv = income - r.thirteenth.sv;
+    r.thirteenth.lst = this.bonusTax(thriteenthMinusSv, 0)
+    r.thirteenth.netto = income - r.thirteenth.sv - r.thirteenth.lst;
+
+    r.fourteenth.brutto = income
+    r.fourteenth.sv = this.bonusSV(income)
+    remaining = income - r.thirteenth.sv;
+    r.fourteenth.lst = this.bonusTax(remaining, thriteenthMinusSv)
+    r.fourteenth.netto = income - r.fourteenth.sv - r.fourteenth.lst;
+
 
     return r;
   }
