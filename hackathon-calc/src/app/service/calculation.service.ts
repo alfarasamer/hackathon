@@ -20,9 +20,9 @@ export class CalculationService {
     // monthly
     r.monthly.brutto = income
     r.monthly.sv = this.sV(income)
-    let remaining = income - r.monthly.sv;
+    let monthlyMinusSv = income - r.monthly.sv;
 
-    r.monthly.lst = this.incomeTax(remaining, 0, form.avab, form.children, form.fabo17, form.fabo18)
+    r.monthly.lst = this.incomeTax(monthlyMinusSv, 0, form.avab, form.children, form.fabo17, form.fabo18)
     r.monthly.netto = income - r.monthly.sv - r.monthly.lst
     if (form.largeCommute != undefined && form.commuteDist != undefined) {
       r.monthly.netto += this.pendlerPauschale(form.largeCommute, form.commuteDist);
@@ -37,8 +37,8 @@ export class CalculationService {
 
     r.fourteenth.brutto = income
     r.fourteenth.sv = this.bonusSV(income, r.thirteenth.sv)
-    remaining = income - r.thirteenth.sv;
-    r.fourteenth.lst = this.bonusTax(remaining, thirteenthMinusSv)
+    let fourteenthMinusSv = income - r.thirteenth.sv;
+    r.fourteenth.lst = this.bonusTax(fourteenthMinusSv, thirteenthMinusSv)
     r.fourteenth.netto = income - r.fourteenth.sv - r.fourteenth.lst;
 
 
