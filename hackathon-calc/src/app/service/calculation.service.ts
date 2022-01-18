@@ -55,7 +55,7 @@ export class CalculationService {
     let lowerTaxBracketBound = 0
 
     for (let t of taxGroups) {
-      if (alreadyTaxed <= lowerTaxBracketBound + t.width) {
+      if (alreadyTaxed < lowerTaxBracketBound + t.width) {
         const amount = Math.min(t.width, remaining)
         alreadyTaxed += amount
         remaining -= amount
@@ -95,6 +95,10 @@ export class CalculationService {
   }
 
   private bonusTax(monthlyIncomeWithoutSv: number, alreadyTaxedBonus: number): number {
+    if (2 * monthlyIncomeWithoutSv <= 2100) { // Freibetrag
+      return 0
+    }
+
     let alreadyTaxed = alreadyTaxedBonus
     let remaining = monthlyIncomeWithoutSv
     let tax = 0
