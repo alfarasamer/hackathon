@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {form} from "../../entity/form";
+import {Form} from "../../entity/form";
 import {CalculationService} from "../../service/calculation.service";
-import {result, ResultCollection} from "../../entity/result";
+import {ResultCollection} from "../../entity/result";
 
 @Component({
   selector: 'app-form',
@@ -36,7 +36,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    let outputForm = new form();
+    let outputForm = new Form();
     if (this.inputForm.valid) {
       outputForm.income = this.inputForm.value.income;
       outputForm.children = this.inputForm.value.children;

@@ -1,11 +1,6 @@
-//enum cat {
-//  employee,
-//  worker
-//}
-export class form {
+export class Form {
   id?: number;
   income: number = 0;
-  //category?: cat;
   avab: boolean = false;
   children: number = 0;
   loneParent?: boolean;
