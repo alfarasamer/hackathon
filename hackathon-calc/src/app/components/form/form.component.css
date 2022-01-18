@@ -20,8 +20,5 @@ body{
     padding-left:2em;
     padding-right:2em;
 }
-select{
-    border: blue;
-}
 
-.dropdownButton{background-color: white;border-color: blue;}
+.dropdownButton{background-color: white;border-color: #337ab7;}
