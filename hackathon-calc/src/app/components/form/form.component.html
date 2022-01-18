@@ -13,9 +13,46 @@
       <input class="form-check-label" type="checkbox" id="loneParent" formControlName="loneParent">
     </div>
     <div>
-      <label
     </div>
   </div>
 
   <button class="btn btn-primary" type="submit">Submit</button>
+
+  <table>
+    <tr>
+      <th></th>
+      <th>Monatlich</th>
+      <th>13.</th>
+      <th>14.</th>
+      <th>Jährlich</th>
+    </tr>
+    <tr>
+      <th>Brutto</th>
+      <td>{{result.monthly.brutto}}</td>
+      <td>{{result.thirteenth.brutto}}</td>
+      <td>{{result.fourteenth.brutto}}</td>
+      <td>{{result.yearly.brutto}}</td>
+    </tr>
+    <tr>
+      <th>SV</th>
+      <td>{{result.monthly.sv}}</td>
+      <td>{{result.thirteenth.sv}}</td>
+      <td>{{result.fourteenth.sv}}</td>
+      <td>{{result.yearly.sv}}</td>
+    </tr>
+    <tr>
+      <th>LSt</th>
+      <td>{{result.monthly.lst}}</td>
+      <td>{{result.thirteenth.lst}}</td>
+      <td>{{result.fourteenth.lst}}</td>
+      <td>{{result.yearly.lst}}</td>
+    </tr>
+    <tr>
+      <th>Netto</th>
+      <td>{{result.monthly.netto}}</td>
+      <td>{{result.thirteenth.netto}}</td>
+      <td>{{result.fourteenth.netto}}</td>
+      <td>{{result.yearly.netto}}</td>
+    </tr>
+  </table>
 </form>

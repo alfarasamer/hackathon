@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {result} from "../entity/result";
+import {result, ResultCollection} from "../entity/result";
 import {form} from "../entity/form";
 
 
@@ -11,8 +11,8 @@ export class CalculationService {
   constructor() {
   }
 
-  calculate(form: form): result {
-    let r = new result();
+  calculate(form: form): ResultCollection {
+    let r = new ResultCollection();
 
     let income = form.income
     console.log(income)

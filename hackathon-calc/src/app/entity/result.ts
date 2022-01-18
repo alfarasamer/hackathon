@@ -1,5 +1,4 @@
 export class result {
-  id?: number;
   brutto?: number;
   sv?: number;
   lst?: number;
@@ -8,8 +7,8 @@ export class result {
 }
 
 export class ResultCollection {
-  monthly?: result;
-  yearly?: result;
-  thirteenth?: result;
-  fourteenth?: result;
+  monthly = new result();
+  yearly = new result();
+  thirteenth = new result();
+  fourteenth = new result();
 }

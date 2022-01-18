@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {form} from "../../entity/form";
 import {CalculationService} from "../../service/calculation.service";
-import {result} from "../../entity/result";
+import {result, ResultCollection} from "../../entity/result";
 
 @Component({
   selector: 'app-form',
@@ -13,10 +13,12 @@ import {result} from "../../entity/result";
 export class FormComponent implements OnInit {
 
   inputForm: FormGroup;
+  result = new ResultCollection();
 
   constructor(
     private formBuilder: FormBuilder, private calculationService: CalculationService
   ) {
+
     this.inputForm = this.formBuilder.group({
       income: [0, [Validators.required, Validators.min(0)]],
       children: [0, [Validators.required, Validators.min(0)]],
@@ -43,7 +45,7 @@ export class FormComponent implements OnInit {
       outputForm.fabo18 = this.inputForm.value.fabo18;
       console.log(outputForm);
 
-      this.calculationService.calculate(outputForm);
+      this.result = this.calculationService.calculate(outputForm);
     } else {
       console.log("Invalid input")
     }
