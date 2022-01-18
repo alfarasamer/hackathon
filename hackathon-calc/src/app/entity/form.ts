@@ -6,6 +6,7 @@ export class form {
   id?: number;
   income: number = 0;
   //category?: cat;
+  avab: boolean = false;
   children: number = 0;
   loneParent?: boolean;
   commute?: string;

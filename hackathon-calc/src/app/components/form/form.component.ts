@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {form} from "../../entity/form";
 import {CalculationService} from "../../service/calculation.service";
 import {result, ResultCollection} from "../../entity/result";
@@ -31,6 +30,10 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  checkLoneParent() {
+    this.inputForm.value.loneParent = !this.inputForm.value.loneParent;
   }
 
   onSubmit(): void {
