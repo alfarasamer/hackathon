@@ -13,7 +13,6 @@ export class FormComponent implements OnInit {
 
   inputForm: FormGroup;
   result = new ResultCollection();
-
   constructor(
     private formBuilder: FormBuilder, private calculationService: CalculationService
   ) {
@@ -52,5 +51,15 @@ export class FormComponent implements OnInit {
     } else {
       console.log("Invalid input")
     }
+  }
+
+  showHelp(): void {
+    let msg = "Brutto Netto Rechner\n\n"+
+    "Allgemeines:\nDer Online Brutto Netto Rechner berechnet unter Betrachtung diverser Faktoren, wie dem Einkommen, den Anzahl der Kindern sowie der Pendlerpauschale die Brutto-, Sozialversicherungs-, Lohnsteuer- und Nettobeträge des Einkommens. Alle erwähnten Beträge dienen \n"+
+    "\nEingabe:\nEinkommen: Das Einkommen kann monatlich oder jährlich angegeben werden.\n"+
+    "\nKinder: Eingabe einer Zahl; AVAB/AEAB bedeutet Alleinverdiener- und Alleinerzieherabsetzbetrag und reduziert die Lohnsteuer\n"+
+    "\nPendlerpauschale: Die Pendlerpauschale wird in klein und groß differenziert. Das kleine Pendlerpauschale gilt für Arbeitnehmerinnen/Arbeitnehmer, deren Arbeitsplatz ohne Aufrundung mindestens 20 Kilometer von der Wohnung entfernt ist und denen die Benützung eines öffentlichen Verkehrsmittels möglich und zumutbar ist."+
+    "Das große Pendlerpauschale gilt für Arbeitnehmerinnen/Arbeitnehmer, deren Arbeitsplatz ohne Aufrundung mindestens zwei Kilometer von der Wohnung entfernt ist, denen aber die Benützung eines öffentlichen Verkehrsmittels nicht möglich oder nicht zumutbar ist.";
+    alert(msg);
   }
 }
