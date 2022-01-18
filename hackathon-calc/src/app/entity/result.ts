@@ -1,14 +1,14 @@
-export class result {
-  brutto?: number;
-  sv?: number;
-  lst?: number;
-  netto?: number;
+export class Result {
+  brutto = 0;
+  sv = 0;
+  lst = 0;
+  netto = 0;
 
 }
 
 export class ResultCollection {
-  monthly = new result();
-  yearly = new result();
-  thirteenth = new result();
-  fourteenth = new result();
+  monthly = new Result();
+  yearly = new Result();
+  thirteenth = new Result();
+  fourteenth = new Result();
 }
