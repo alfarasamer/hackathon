@@ -11,10 +11,10 @@ export class CalculationService {
   constructor() {
   }
 
-  calculate(form : form): result {
+  calculate(form: form): result {
     let r = new result();
 
-    let income = form.income;
+    let income = form.income
     console.log(income)
 
     let sv = this.sV(income)
@@ -22,8 +22,7 @@ export class CalculationService {
 
     let remaining = income - sv;
 
-
-    console.log(this.incomeTax(remaining, 0, form.children, form.fabo17, form.fabo18))
+    console.log(this.incomeTax(remaining, 0))
 
     return r;
   }
@@ -122,6 +121,30 @@ export class CalculationService {
       return monthlyIncome * 0.1712;
     }
     return 1900.32;
+  }
+
+  private pendlerPauschale(isBig: boolean, distanceInKm: number): number {
+    let pauschale = 0;
+    if (isBig) { // Pendler Pauschale gross
+      if (distanceInKm >= 60) {
+        pauschale = 306;
+      } else if (distanceInKm >= 40) {
+        pauschale = 214;
+      } else if (distanceInKm >= 20) {
+        pauschale = 123;
+      } else if (distanceInKm >= 2) {
+        pauschale = 31;
+      }
+    } else { // Pendler Pauschale klein
+      if (distanceInKm >= 60) {
+        pauschale = 168;
+      } else if (distanceInKm >= 40) {
+        pauschale = 113;
+      } else if (distanceInKm >= 20) {
+        pauschale = 58;
+      }
+    }
+    return (distanceInKm * 2) / 12 + pauschale;
   }
 }
 

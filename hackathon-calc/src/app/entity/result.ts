@@ -6,3 +6,10 @@ export class result {
   netto?: number;
 
 }
+
+export class ResultCollection {
+  monthly?: result;
+  yearly?: result;
+  thirteenth?: result;
+  fourteenth?: result;
+}
