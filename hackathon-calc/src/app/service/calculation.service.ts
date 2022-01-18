@@ -26,9 +26,6 @@ export class CalculationService {
     r.monthly.lst = this.incomeTax(remaining, 0, form.children, form.fabo17, form.fabo18)
     r.monthly.netto = income - r.monthly.sv - r.monthly.lst; // todo pauschalen, ...
 
-    // yearly
-    r.yearly.brutto = income * 14
-
     // bonus
     r.thirteenth.brutto = income
     r.thirteenth.sv = this.bonusSV(income)
@@ -42,6 +39,12 @@ export class CalculationService {
     r.fourteenth.lst = this.bonusTax(remaining, thriteenthMinusSv)
     r.fourteenth.netto = income - r.fourteenth.sv - r.fourteenth.lst;
 
+
+    // yearly
+    r.yearly.brutto = income * 14
+    r.yearly.netto = 12 * r.monthly.netto + r.thirteenth.netto + r.fourteenth.netto
+    r.yearly.lst = 12 * r.monthly.lst + r.thirteenth.lst + r.fourteenth.lst
+    r.yearly.sv = 12 * r.monthly.sv + r.thirteenth.sv + r.fourteenth.sv
 
     return r;
   }
@@ -65,30 +68,30 @@ export class CalculationService {
 
     //AVAB/AEAB deductions
     if (children == 1) {
-      tax-= 494;
+      tax -= 494;
     }
     if (children == 2) {
-      tax-=669;
+      tax -= 669;
     }
     if (children >= 3) {
       for (let i = 3; i <= children; i++) {
-        tax-= 220;
+        tax -= 220;
       }
     }
     //fabo17 deduction
     if (fabo17 > 0) {
       for (let i = 1; i <= fabo17; i++) {
-        tax -=125;
+        tax -= 125;
       }
     }
     //fabo18 deduction
     if (fabo18 > 0) {
       for (let i = 1; i <= fabo18; i++) {
-        tax -=41.68;
+        tax -= 41.68;
       }
     }
 
-    return tax <= 0? 0:tax;
+    return tax <= 0 ? 0 : tax;
   }
 
   private bonusTax(monthlyIncomeWithoutSv: number, alreadyTaxedBonus: number): number {
