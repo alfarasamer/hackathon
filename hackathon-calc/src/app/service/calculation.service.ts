@@ -23,7 +23,7 @@ export class CalculationService {
     r.monthly.sv = this.sV(income)
     let remaining = income - r.monthly.sv;
 
-    r.monthly.lst = this.incomeTax(remaining, 0, form.children, form.fabo17, form.fabo18)
+    r.monthly.lst = this.incomeTax(remaining, 0, form.avab, form.children, form.fabo17, form.fabo18)
     r.monthly.netto = income - r.monthly.sv - r.monthly.lst; // todo pauschalen, ...
 
     // bonus

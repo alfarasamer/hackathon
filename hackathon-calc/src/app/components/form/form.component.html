@@ -53,40 +53,44 @@
   </table>
 
   <table class="table">
-    <tr>
-      <td></td>
-      <th>Monatlich</th>
-      <th>13. Bezug</th>
-      <th>14. Bezug</th>
-      <th>Jährlich</th>
-    </tr>
-    <tr>
-      <th>Brutto</th>
-      <td>{{result.monthly.brutto}}</td>
-      <td>{{result.thirteenth.brutto}}</td>
-      <td>{{result.fourteenth.brutto}}</td>
-      <td>{{result.yearly.brutto}}</td>
-    </tr>
-    <tr>
-      <th>SV</th>
-      <td>{{result.monthly.sv}}</td>
-      <td>{{result.thirteenth.sv}}</td>
-      <td>{{result.fourteenth.sv}}</td>
-      <td>{{result.yearly.sv}}</td>
-    </tr>
-    <tr>
-      <th>LSt</th>
-      <td>{{result.monthly.lst}}</td>
-      <td>{{result.thirteenth.lst}}</td>
-      <td>{{result.fourteenth.lst}}</td>
-      <td>{{result.yearly.lst}}</td>
-    </tr>
-    <tr>
-      <th>Netto</th>
-      <td>{{result.monthly.netto}}</td>
-      <td>{{result.thirteenth.netto}}</td>
-      <td>{{result.fourteenth.netto}}</td>
-      <td>{{result.yearly.netto}}</td>
-    </tr>
+    <thead>
+      <tr>
+        <td></td>
+        <th scope="row">Monatlich</th>
+        <th scope="row">13. Bezug</th>
+        <th scope="row">14. Bezug</th>
+        <th scope="row">Jährlich</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="col">Brutto</th>
+        <td>{{result.monthly.brutto | currency : 'EUR'}}</td>
+        <td>{{result.thirteenth.brutto | currency : 'EUR'}}</td>
+        <td>{{result.fourteenth.brutto | currency : 'EUR'}}</td>
+        <td>{{result.yearly.brutto | currency : 'EUR'}}</td>
+      </tr>
+      <tr>
+        <th scope="row">SV</th>
+        <td>{{result.monthly.sv | currency : 'EUR'}}</td>
+        <td>{{result.thirteenth.sv | currency : 'EUR'}}</td>
+        <td>{{result.fourteenth.sv | currency : 'EUR'}}</td>
+        <td>{{result.yearly.sv | currency : 'EUR'}}</td>
+      </tr>
+      <tr>
+        <th scope="row">LSt</th>
+        <td>{{result.monthly.lst | currency : 'EUR'}}</td>
+        <td>{{result.thirteenth.lst | currency : 'EUR'}}</td>
+        <td>{{result.fourteenth.lst | currency : 'EUR'}}</td>
+        <td>{{result.yearly.lst | currency : 'EUR'}}</td>
+      </tr>
+      <tr>
+        <th scope="row">Netto</th>
+        <td>{{result.monthly.netto | currency : 'EUR'}}</td>
+        <td>{{result.thirteenth.netto | currency : 'EUR'}}</td>
+        <td>{{result.fourteenth.netto | currency : 'EUR'}}</td>
+        <td>{{result.yearly.netto | currency : 'EUR'}}</td>
+      </tr>
+    </tbody>
   </table>
 </form>
