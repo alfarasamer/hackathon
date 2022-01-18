@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {form} from "../../entity/form";
 
 @Component({
   selector: 'app-form',
@@ -19,7 +20,7 @@ export class FormComponent implements OnInit {
       children: [0, [Validators.required, Validators.min(0)]],
       loneParent: [false, []],
       commute: ['klein', []],
-      commuteDistance: [0, [Validators.min(0)]],
+      commuteDist: [0, [Validators.min(0)]],
       fabo17: [0, [Validators.min(0)]],
       fabo18: [0, [Validators.min(0)]]
     })
@@ -29,6 +30,20 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(): void {
+    let outputForm = new form();
+    if (this.inputForm.valid) {
+      outputForm.income = this.inputForm.value.income;
+      outputForm.children = this.inputForm.value.children;
+      outputForm.loneParent = this.inputForm.value.loneParent;
+      outputForm.commute = this.inputForm.value.commute;
+      outputForm.commuteDist = this.inputForm.value.commuteDist;
+      outputForm.fabo17 = this.inputForm.value.fabo17;
+      outputForm.fabo18 = this.inputForm.value.fabo18;
+      console.log(outputForm);
 
+      //Call to Service
+    } else {
+      console.log("Invalid input")
+    }
   }
 }
