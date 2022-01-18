@@ -28,15 +28,15 @@ export class CalculationService {
 
     // bonus
     r.thirteenth.brutto = income
-    r.thirteenth.sv = this.bonusSV(income)
-    let thriteenthMinusSv = income - r.thirteenth.sv;
-    r.thirteenth.lst = this.bonusTax(thriteenthMinusSv, 0)
+    r.thirteenth.sv = this.bonusSV(income, 0)
+    let thirteenthMinusSv = income - r.thirteenth.sv;
+    r.thirteenth.lst = this.bonusTax(thirteenthMinusSv, 0)
     r.thirteenth.netto = income - r.thirteenth.sv - r.thirteenth.lst;
 
     r.fourteenth.brutto = income
-    r.fourteenth.sv = this.bonusSV(income)
+    r.fourteenth.sv = this.bonusSV(income, r.thirteenth.sv)
     remaining = income - r.thirteenth.sv;
-    r.fourteenth.lst = this.bonusTax(remaining, thriteenthMinusSv)
+    r.fourteenth.lst = this.bonusTax(remaining, thirteenthMinusSv)
     r.fourteenth.netto = income - r.fourteenth.sv - r.fourteenth.lst;
 
 
@@ -69,14 +69,14 @@ export class CalculationService {
     //AVAB/AEAB deductions
     if (avab) {
       if (children == 1) {
-        tax-= 494;
+        tax -= 494;
       }
       if (children == 2) {
-        tax-=669;
+        tax -= 669;
       }
       if (children >= 3) {
         for (let i = 3; i <= children; i++) {
-          tax-= 220;
+          tax -= 220;
         }
       }
     }
@@ -129,7 +129,7 @@ export class CalculationService {
       return monthlyIncome * 0.1512;
     } else if (monthlyIncome <= 1953) {
       return monthlyIncome * 0.1612;
-    } else if (monthlyIncome <= 2217) {
+    } else if (monthlyIncome <= 2117) {
       return monthlyIncome * 0.1712;
     } else if (monthlyIncome <= 5550) {
       return monthlyIncome * 0.1912;
@@ -137,19 +137,25 @@ export class CalculationService {
     return 1005.66;
   }
 
-  private bonusSV(monthlyIncome: number): number {
+  private bonusSV(monthlyIncome: number, alreadyPaidBonusSv: number): number {
+    let sv = 0
     if (monthlyIncome <= 475.86) {
-      return 0;
+      sv = 0;
     } else if (monthlyIncome <= 1790) {
-      return monthlyIncome * 0.1412;
+      sv = monthlyIncome * 0.1412;
     } else if (monthlyIncome <= 1953) {
-      return monthlyIncome * 0.1512;
-    } else if (monthlyIncome <= 2217) {
-      return monthlyIncome * 0.1612;
+      sv = monthlyIncome * 0.1512;
+    } else if (monthlyIncome <= 2117) {
+      sv = monthlyIncome * 0.1612;
     } else if (monthlyIncome <= 5550) {
-      return monthlyIncome * 0.1712;
+      sv = monthlyIncome * 0.1712;
+    } else {
+      sv = Math.min(1900.32, monthlyIncome * 0.1712)
     }
-    return 1900.32;
+    if (sv + alreadyPaidBonusSv > 1900.32) {
+      return 1900.32 - alreadyPaidBonusSv
+    }
+    return sv
   }
 
   private pendlerPauschale(isBig: boolean, distanceInKm: number): number {
