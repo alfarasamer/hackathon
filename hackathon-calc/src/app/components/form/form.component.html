@@ -25,13 +25,13 @@
     <tr>
       <td><label for="commuteSelect">Pendlerpauschale </label></td>
       <td>
-        <select class="form-select" id="commuteSelect" aria-label="commuteSelect">
-          <option value="klein" selected>klein</option>
-          <option value="gross">groß</option>
+        <select class="form-select" id="commuteSelect" aria-label="commuteSelect" formControlName="largeCommute">
+          <option value="false" selected>klein</option>
+          <option value="true">groß</option>
         </select>
       </td>
       <td>
-        <input class="form-control" type="number" min="0" id="commute" formControlName="commute" value="0">
+        <input class="form-control" type="number" min="0" id="commute" formControlName="commuteDist" value="0">
       </td>
     </tr>
     <tr>
@@ -44,7 +44,7 @@
     </tr>
     <tr>
       <td></td>
-      <td colspan="3"><button class="submit-button" id="submitButton" type="submit">berechnen</button></td>
+      <td colspan="3"><button class="btn submit-button" id="submitButton" type="submit">berechnen</button></td>
     <td></td></tr>
   </table>
 

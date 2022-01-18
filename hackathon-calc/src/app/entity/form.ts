@@ -4,7 +4,7 @@ export class Form {
   avab: boolean = false;
   children: number = 0;
   loneParent?: boolean;
-  commute?: string;
+  largeCommute?: boolean;
   commuteDist?: number;
   fabo17: number = 0;
   fabo18: number = 0;

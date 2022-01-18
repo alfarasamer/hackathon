@@ -21,7 +21,7 @@ export class FormComponent implements OnInit {
       income: [0, [Validators.required, Validators.min(0)]],
       children: [0, [Validators.required, Validators.min(0)]],
       loneParent: [false, []],
-      commute: ['klein', []],
+      largeCommute: [false, []],
       commuteDist: [0, [Validators.min(0)]],
       fabo17: [0, [Validators.min(0)]],
       fabo18: [0, [Validators.min(0)]]
@@ -41,7 +41,7 @@ export class FormComponent implements OnInit {
       outputForm.income = this.inputForm.value.income;
       outputForm.children = this.inputForm.value.children;
       outputForm.loneParent = this.inputForm.value.loneParent;
-      outputForm.commute = this.inputForm.value.commute;
+      outputForm.largeCommute = this.inputForm.value.largeCommute;
       outputForm.commuteDist = this.inputForm.value.commuteDist;
       outputForm.fabo17 = this.inputForm.value.fabo17;
       outputForm.fabo18 = this.inputForm.value.fabo18;
