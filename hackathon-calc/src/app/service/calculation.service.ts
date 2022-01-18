@@ -23,7 +23,10 @@ export class CalculationService {
     let remaining = income - r.monthly.sv;
 
     r.monthly.lst = this.incomeTax(remaining, 0, form.avab, form.children, form.fabo17, form.fabo18)
-    r.monthly.netto = income - r.monthly.sv - r.monthly.lst; // todo pauschalen, ...
+    r.monthly.netto = income - r.monthly.sv - r.monthly.lst
+    if (form.largeCommute != undefined && form.commuteDist != undefined) {
+      r.monthly.netto += this.pendlerPauschale(form.largeCommute, form.commuteDist);
+    }
 
     // bonus
     r.thirteenth.brutto = income
