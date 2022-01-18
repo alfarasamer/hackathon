@@ -52,7 +52,7 @@ export class CalculationService {
     let lowerTaxBracketBound = 0
 
     for (let t of taxGroups) {
-      if (alreadyTaxed <= lowerTaxBracketBound) {
+      if (alreadyTaxed <= lowerTaxBracketBound + t.width) {
         const amount = Math.min(t.width, remaining)
         alreadyTaxed += amount
         remaining -= amount
@@ -98,7 +98,7 @@ export class CalculationService {
     let lowerTaxBracketBound = 0
 
     for (let t of bonusTaxGroups) {
-      if (alreadyTaxed <= lowerTaxBracketBound) {
+      if (alreadyTaxed < lowerTaxBracketBound + t.width) {
         const amount = Math.min(t.width, remaining)
         alreadyTaxed += amount
         remaining -= amount
